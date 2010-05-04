@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form action="/registration/" method="post">
+        <div class = "registration">
+            <table id = "table_pagr_info">
+                {% if error %}
+                <tr>
+                    <td colspan = "2"><span class = "error">{{ error }}</span></td>
+                </tr>
+                {% endif %}
+                <th>Pagrindine informacija</th>
+                <tr>
+                    <td>
+                        <label for = "Vartotojo_vardas">Vartotojo vardas</label>
+                        {% for error in  form.Vartotojo_vardas.errors %}
+                            <br/><span class = "error">{{ error }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ form.Vartotojo_vardas }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for = "Vardas">Vardas</label>
+                        {% for error in  form.Vardas.errors %}
+                            <br/><span class = "error">{{ error }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ form.Vardas }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for = "Pavarde">Pavarde</label>
+                        {% for error in  form.Pavarde.errors %}
+                            <br/><span class = "error">{{ error }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ form.Pavarde }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for = "Gimtadienis">Gimtadienis<br/>(MMMM-MM-DD)</label>
+                        {% for error in  form.Gimtadienis.errors %}
+                            <br/><span class = "error">{{ error }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ form.Gimtadienis }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for = "El_pastas">El pastas</label>
+                        {% for error in  form.El_pastas.errors %}
+                            <br/><span class = "error">{{ error }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ form.El_pastas }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for = "Slaptazodis">Slaptazodis</label>
+                        {% for error in  form.Slaptazodis.errors %}
+                            <br/><span class = "error">{{ error }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ form.Slaptazodis }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for = "Pakartoti_slaptazodi">Pakartoti slaptazodi</label>
+                        {% for error in  form.Pakartoti_slaptazodi.errors %}
+                            <br/><span class = "error">{{ error }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ form.Pakartoti_slaptazodi }}
+                    </td>
+                </tr>
+                <tr><td colspan = "2"><input type = "submit" value = "Registruotis" /></td></tr>
+            </table>
+            <div class = "form_separator"><hr/></div>
+            <table id = "gyvenamoji_vieta">
+                <th>Gyvenamoji vieta</th>
+                <tr>
+                    <td>
+                        <label for = "Salis">Salis</label>
+                        {% for error in  form.Salis.errors %}
+                            <br/><span class = "error">{{ error }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ form.Salis }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for = "Miestas">Miestas</label>
+                        {% for error in  form.Miestas.errors %}
+                            <br/><span class = "error">{{ error }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ form.Miestas }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for = "Adresas">Adresas</label>
+                        {% for error in  form.Adresas.errors %}
+                            <br/><span class = "error">{{ error }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ form.Adresas }}
+                    </td>
+                </tr>
+            </table>
+            <div class = "form_separator"><hr/></div>
+            <table id = "issilavinimas">
+                <th>Issilavinimas</th>
+                <tr>
+                    <td>
+                        <label for = "Vidurine_mokykla">Vidurine mokykla</label>
+                        {% for error in  form.Vidurine_mokykla.errors %}
+                            <br/><span class = "error">{{ error }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ form.Vidurine_mokykla }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for = "Vid_mokyklos_baigimo_metai">Vid mokyklos baigimo metai<br/>(MMMM-MM-DD)</label>
+                        {% for error in  form.Vidurine_mokykla.errors %}
+                            <br/><span class = "error">{{ error }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ form.Vid_mokyklos_baigimo_metai }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for = "Aukstoji_mokykla">Aukstoji mokykla</label>
+                        {% for error in  form.Aukstoji_mokykla.errors %}
+                            <br/><span class = "error">{{ error }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ form.Aukstoji_mokykla }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for = "Aukst_mokyklos_baigimo_metai">Aukst mokyklos baigimo metai<br/>(MMMM-MM-DD)</label>
+                        {% for error in  form.Aukst_mokyklos_baigimo_metai.errors %}
+                            <br/><span class = "error">{{ error }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ form.Aukst_mokyklos_baigimo_metai }}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan = "2"><input type = "submit" value = "Registruotis" /></td>
+                </tr>
+            </table>
+        </div>
+        
+    </form>
+{% endblock %}

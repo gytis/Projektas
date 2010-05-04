@@ -1,0 +1,13 @@
+setup.py
+src/socialinis_tinklas.egg-info/PKG-INFO
+src/socialinis_tinklas.egg-info/SOURCES.txt
+src/socialinis_tinklas.egg-info/dependency_links.txt
+src/socialinis_tinklas.egg-info/requires.txt
+src/socialinis_tinklas.egg-info/top_level.txt
+src/tinklas/__init__.py
+src/tinklas/settings.py
+src/tinklas/testsettings.py
+src/tinklas/registracija/__init__.py
+src/tinklas/registracija/models.py
+src/tinklas/registracija/tests.py
+src/tinklas/registracija/views.py

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form action="/login/" method="post">
+    <table id = "table_login">
+        {% if error %}
+            <tr>
+                <td colspan = "2"><span class = "error">{{ error }}</span></td>
+            </tr>
+        {% endif %}
+        {% for field in form %}
+            <tr>
+                <td>
+                    {{ field.label_tag }}
+                    {% for error in  field.errors %}
+                        <br/><span class = "error">{{error}}</span>
+                    {% endfor %}
+                </td>
+                <td>
+                    {{ field }}
+                </td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td>
+                <input type = "submit" value = "Prisijungti" />
+            </td>
+            <td>
+                <button type="button" onclick = "window.open('/registration/','_self')">Registruotis</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{% endblock %}
