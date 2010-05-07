@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form action="/registration/" method="post">
+    <form action="." method="post" enctype="multipart/form-data">
         <div class = "registration">
             <table id = "table_pagr_info">
                 {% if error %}
@@ -85,6 +85,17 @@
                     </td>
                     <td>
                         {{ form.Pakartoti_slaptazodi }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for = "Nuotrauka">Nuotrauka</label>
+                        {% for error in  form.Nuotrauka.errors %}
+                            <br/><span class = "error">{{ error }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ form.Nuotrauka }}
                     </td>
                 </tr>
                 <tr><td colspan = "2"><input type = "submit" value = "Registruotis" /></td></tr>

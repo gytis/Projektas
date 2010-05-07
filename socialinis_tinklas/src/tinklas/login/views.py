@@ -4,7 +4,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.contrib.auth import authenticate, login, logout
-from tinklas.login.forms import LoginForm
+from tinklas.forms.forms import LoginForm
 
 def prisijungti(request):
     if request.user.is_authenticated():

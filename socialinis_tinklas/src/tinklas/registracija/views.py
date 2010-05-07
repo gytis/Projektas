@@ -6,12 +6,51 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from tinklas.home.models import Vartotojo_Profilis
-from tinklas.registracija.forms import RegistrationForm
+from tinklas.forms.forms import RegistrationForm
+from tinklas.settings import MEDIA_ROOT
+from tinklas.photos.photos_manager import issaugoti_nuotrauka
+
+
+from django import http
+from django import forms
+
+class SimpleFileForm(forms.Form):
+    #file = forms.Field(widget=forms.FileInput, required=False)
+    file = forms.ImageField()
+
+def directupload(request):
+    
+    template = 'fileupload.html'
+    
+    if request.method == 'POST':
+        form = SimpleFileForm(request.POST)
+        if form.is_valid():
+            if 'file' in request.FILES:
+                file = request.FILES['file']
+                
+                # Other data on the request.FILES dictionary:
+                #   filesize = len(file['content'])   
+                #   filetype = file['content-type'] 
+                
+                filename = file.name
+                
+                fd = open('%s/%s' % (MEDIA_ROOT, filename), 'wb')
+                fd.write(file.read())
+                fd.close()
+                
+                return render_to_response('upload_success.html', { 'message': MEDIA_ROOT })
+        else:
+            return render_to_response('upload_success.html', { 'message': 'nevalidi forma' })
+    else:
+        # display the form
+        form = SimpleFileForm()
+        return render_to_response(template, { 'form': form })
 
 def registruoti(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/home/')
-    else:        
+    else:  
+        error = ""
         if request.method == 'POST':
             form = RegistrationForm(request.POST)
             if form.is_valid():
@@ -53,6 +92,8 @@ def registruoti_vartotoja(request):
     profilis = Vartotojo_Profilis(user = vartotojas)    
     profilis.save()
     
+    if 'Nuotrauka' in request.FILES:
+        profilis.nuotrauka = issaugoti_nuotrauka(vartotojas.username, "root", request.FILES['Nuotrauka'])
     profilis.gimtadienis = request.POST['Gimtadienis']
     profilis.salis = request.POST['Salis']
     profilis.miestas = request.POST['Miestas']
@@ -71,4 +112,3 @@ def registruoti_vartotoja(request):
         profilis.a_mokyklos_baigimo_metai = request.POST['Aukst_mokyklos_baigimo_metai']
     
     profilis.save()
-

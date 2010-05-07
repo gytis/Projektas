@@ -13,6 +13,8 @@ class Vartotojo_Profilis(models.Model):
     miestas = models.CharField(max_length = 30, blank = True)
     adresas = models.CharField(max_length = 40, blank = True)
     
+    nuotrauka = models.FileField(upload_to = '/files', null = True)
+    
     vidurine_mokykla = models.CharField(max_length = 30, blank = True)
     v_mokyklos_baigimo_metai = models.PositiveIntegerField(null = True, blank = True)
     aukstoji_mokykla = models.CharField(max_length = 30, blank = True)
