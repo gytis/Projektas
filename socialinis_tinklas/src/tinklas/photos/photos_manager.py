@@ -1,10 +1,10 @@
-
 """
-    photos views
+    Photos views
 """
 
 from os import mkdir, listdir
 from tinklas.settings import MEDIA_ROOT
+
 
 def getAlbum(username, album):
     user_folder = "%s/%s" % (MEDIA_ROOT, username)
@@ -19,6 +19,7 @@ def getAlbum(username, album):
         return None    
     return album_folder
 
+
 def createAlbum(username, album):
     user_folder = "%s/%s" % (MEDIA_ROOT, username)
     albums_folder = "%s/%s/%s" % (MEDIA_ROOT, username, "albums")
@@ -28,18 +29,17 @@ def createAlbum(username, album):
         mkdir(user_folder)
         mkdir(albums_folder)
         mkdir(album_folder)
-        return album_folder
-    
+        return album_folder    
     elif "albums" not in listdir(user_folder):
         mkdir(albums_folder)
         mkdir(album_folder)
-        return album_folder
-    
+        return album_folder    
     elif album not in listdir(albums_folder):
         mkdir(album_folder)
         return album_folder
     
     return album_folder
+
 
 def issaugoti_nuotrauka(username, album, foto):
     album_folder = createAlbum(username, album)

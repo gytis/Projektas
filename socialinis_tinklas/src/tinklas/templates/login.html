@@ -1,4 +1,6 @@
-{% extends "base.html" %}
+{% extends "anonymous_base.html" %}
+
+{% block title %}Prisijungimas {% endblock %}
 
 {% block content %}
 
@@ -6,7 +8,9 @@
     <table id = "table_login">
         {% if error %}
             <tr>
-                <td colspan = "2"><span class = "error">{{ error }}</span></td>
+                <td colspan = "2">
+                    <span class = "error">{{ error }}</span>
+                </td>
             </tr>
         {% endif %}
         {% for field in form %}
@@ -24,10 +28,10 @@
         {% endfor %}
         <tr>
             <td>
-                <input type = "submit" value = "Prisijungti" />
+                <input class = "button" type = "submit" value = "Prisijungti" />
             </td>
             <td>
-                <button type="button" onclick = "window.open('/registration/','_self')">Registruotis</button>
+                <button class = "button" type="button" onclick = "window.open('/registration/','_self')">Registruotis</button>
             </td>
         </tr>
     </table>

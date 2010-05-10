@@ -1,12 +1,13 @@
+"""
+    Home views
+"""
 
-# home views
-
-from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
+from django.shortcuts import render_to_response
+
 
 def home(request):
     if request.user.is_authenticated():
-        return render_to_response("home.html")    
+        return HttpResponseRedirect('/info/')
     else:
         return HttpResponseRedirect('/login/')
-

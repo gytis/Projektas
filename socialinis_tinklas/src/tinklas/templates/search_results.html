@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+<div class = "paieskos_rezultatai">
+    <h1>{{ title }}</h1>
+    <table>
+        <tr>
+            <th></th>
+            <th><p>Vardas</p></th>
+            <th><p>Pavarde</p></th>
+            <th><p>Gimtadienis</p></th>
+            <th><p>Salis</p></th>
+            <th><p>Miestas</p></th>
+        </tr>
+    {% for item in rezultatas %}    
+        <tr onclick="window.open('/info/user/?username={{ item.username }}', '_self')">
+            <td><img src = /{{ item.get_profile.nuotrauka }}/></td>
+            <td>
+                <p>
+                    {% if item.first_name %}
+                        {{ item.first_name }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </p>
+            </td>
+            <td>
+                <p>
+                    {% if item.last_name %}
+                        {{ item.last_name }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </p>
+            </td>
+            <td>
+                <p>
+                    {% if item.get_profile.gimtadienis %}
+                        {{ item.get_profile.gimtadienis }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </p>
+            </td>
+            <td>
+                <p>
+                    {% if item.get_profile.salis %}
+                        {{ item.get_profile.salis }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </p>
+            </td>
+            <td>
+                <p>
+                    {% if item.get_profile.miestas %}
+                        {{ item.get_profile.miestas }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </p>
+            </td>
+        </tr>    
+    {% endfor %}
+    </table>
+
+</div>
+{% endblock %}

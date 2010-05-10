@@ -1,0 +1,29 @@
+
+body {
+    background-color: #006699;
+    text-align: left;
+    font-family: Tahoma, Times, Serif;
+    font-size: 10pt;
+    /*color: #003300;*/
+    color: white;
+}
+.button {
+    color: #003300;
+    background-color: #006699;
+    border-color: #00CC99;
+    height: 23px;
+    font-weight: normal;
+    font-size: 9pt;
+    color: white;
+    font-weight: bold;
+}
+.button:hover {
+    background-color: #1F88A7;
+    border-color: #00CC99;
+    cursor: pointer;
+}
+.error {
+    color: #FF6600;
+    font-size: 9pt;
+    font-weight: bold;
+}

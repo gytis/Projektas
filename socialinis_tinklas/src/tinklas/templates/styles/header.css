@@ -1,0 +1,79 @@
+#header {
+    margin-left: auto;
+    margin-right: auto;
+    width: 840px;
+}
+
+#pranesimai {
+    border: thin silver solid;
+    width: 200px;
+    height: 84px; 
+    background-color: #009999;
+    margin: 10px;
+    float: left; 
+    vertical-align: bottom;
+}
+#pranesimai span {
+    font-size: 10pt;
+    font-weight: bold;
+    padding-left: 5px;
+}
+#pranesimai a {
+    padding-left: 5px;
+    font-size: 8pt;
+    color: white;
+}
+
+#toolbar {
+    border: thin silver solid;
+    height: 84px;
+    width: 596px;
+    background-color: #009999;
+    padding: 0;
+    position: relative;
+    margin: 10px;
+    float: right;
+}
+#toolbar img {
+    border: thin silver solid;
+    height: 60px;
+    width: 60px;
+    margin: 10px;
+}
+#foto {
+    position: absolute;
+    top: 0;
+    left: 0;  
+}
+#savininkas {
+    position: absolute;
+    top: 0;
+    left: 80px;
+    margin: 10px;
+}
+#savininkas span {
+    font-size: 11pt;
+    font-weight: bold;
+    text-decoration: underline;
+}
+#meniu {
+    position: absolute;
+    top: 40px;
+    left: 80px;
+    padding: 0;
+    margin: 10px;
+}
+#meniu ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+#meniu li {
+    display: inline;
+}
+#paieska {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+}

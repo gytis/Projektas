@@ -1,6 +1,9 @@
-{% extends "base.html" %}
+{% extends "anonymous_base.html" %}
+
+{% block title %}Registracija{% endblock %}
 
 {% block content %}
+    
     <form action="." method="post" enctype="multipart/form-data">
         <div class = "registration">
             <table id = "table_pagr_info">
@@ -12,7 +15,7 @@
                 <th>Pagrindine informacija</th>
                 <tr>
                     <td>
-                        <label for = "Vartotojo_vardas">Vartotojo vardas</label>
+                        <label for = "Vartotojo_vardas">Vartotojo vardas*</label>
                         {% for error in  form.Vartotojo_vardas.errors %}
                             <br/><span class = "error">{{ error }}</span>
                         {% endfor %}
@@ -23,7 +26,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for = "Vardas">Vardas</label>
+                        <label for = "Vardas">Vardas*</label>
                         {% for error in  form.Vardas.errors %}
                             <br/><span class = "error">{{ error }}</span>
                         {% endfor %}
@@ -34,7 +37,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for = "Pavarde">Pavarde</label>
+                        <label for = "Pavarde">Pavarde*</label>
                         {% for error in  form.Pavarde.errors %}
                             <br/><span class = "error">{{ error }}</span>
                         {% endfor %}
@@ -56,7 +59,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for = "El_pastas">El pastas</label>
+                        <label for = "El_pastas">El pastas*</label>
                         {% for error in  form.El_pastas.errors %}
                             <br/><span class = "error">{{ error }}</span>
                         {% endfor %}
@@ -67,7 +70,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for = "Slaptazodis">Slaptazodis</label>
+                        <label for = "Slaptazodis">Slaptazodis*</label>
                         {% for error in  form.Slaptazodis.errors %}
                             <br/><span class = "error">{{ error }}</span>
                         {% endfor %}
@@ -78,7 +81,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for = "Pakartoti_slaptazodi">Pakartoti slaptazodi</label>
+                        <label for = "Pakartoti_slaptazodi">Pakartoti slaptazodi*</label>
                         {% for error in  form.Pakartoti_slaptazodi.errors %}
                             <br/><span class = "error">{{ error }}</span>
                         {% endfor %}
@@ -98,7 +101,6 @@
                         {{ form.Nuotrauka }}
                     </td>
                 </tr>
-                <tr><td colspan = "2"><input type = "submit" value = "Registruotis" /></td></tr>
             </table>
             <div class = "form_separator"><hr/></div>
             <table id = "gyvenamoji_vieta">
@@ -185,7 +187,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan = "2"><input type = "submit" value = "Registruotis" /></td>
+                    <td><input class = "button" type = "submit" value = "Registruotis" /></td>
+                    <td><button class = "button" type="button" onclick = "window.open('/home/','_self')">Pagrindinis</button></td>
                 </tr>
             </table>
         </div>

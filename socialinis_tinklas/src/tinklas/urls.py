@@ -1,5 +1,6 @@
-
-# base urls
+""" 
+    Base urls
+"""
 
 from django.conf.urls.defaults import *
 
@@ -17,8 +18,16 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     (r'^$',  include('tinklas.home.urls')),
+    (r'^home/', include('tinklas.home.urls')),
     (r'^admin/', include(admin.site.urls)),
     (r'^registration/', include('tinklas.registracija.urls')),
-    (r'^home/', include('tinklas.home.urls')),
-    (r'^login/', include('tinklas.login.urls')),
+    (r'^info/', include('tinklas.info.urls')),
+    (r'^login/', 'tinklas.login.views.prisijungti'),
+    (r'^logout/', 'tinklas.login.views.atsijungti'),
+    (r'^mail/', include('tinklas.mail.urls')),
+    (r'^friends/', include('tinklas.friends.urls')),
+    (r'^styles/(?P<path>.*)$', 'django.views.static.serve',
+        {'document_root': 'src/tinklas/templates/styles'}),
+    (r'^files/(?P<path>.*)$', 'django.views.static.serve',
+        {'document_root': 'files/'})
 )

@@ -1,0 +1,58 @@
+Metadata-Version: 1.0
+Name: gocept.download
+Version: 0.9.4
+Summary: zc.buildout recipe for downloading and extracting an archive.
+Home-page: http://svn.gocept.com/repos/gocept/gocept.download
+Author: Christian Theune
+Author-email: ct@gocept.com
+License: ZPL 2.1
+Download-URL: https://svn.gocept.com/repos/gocept/gocept.download/trunk#egg=gocept.download-dev
+Description: ===============
+        gocept.download
+        ===============
+        
+        
+        zc.buildout recipe to download and extract an archive.
+        
+        
+        Configuration options
+        =====================
+        
+        :url:
+        The URL of the archive to download.
+        
+        :strip-top-level-dir: (optional)
+        Whether to remove the top-level directory from the extracted archive
+        contents.
+        
+        :md5sum:
+        MD5 checksum of the archive.
+        
+        :destination:
+        Where to put the extracted archive contents.
+        
+        :download-directory: (optional)
+        Where to put the downloaded archive.
+        
+        This option uses a buildout option of the same name as a default if that
+        is specified.
+        
+        
+        Caching
+        =======
+        
+        The download directory, if given, acts as a cache. In addition,
+        gocept.download takes advantage of zc.buildout's download cache.
+        
+Keywords: buildout zc.buildout recipe download extract archive
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Environment :: Plugins
+Classifier: Framework :: Buildout
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Zope Public License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: System :: Software Distribution

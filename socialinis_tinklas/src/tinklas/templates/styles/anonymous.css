@@ -1,0 +1,15 @@
+.form_separator {
+    width: 30em;
+}
+
+#table_login, .registration {
+    margin-left:auto;
+    margin-right:auto;
+    background-color: #009999;
+    color: #003300;
+    border: thin silver solid;
+}
+
+.registration {
+    width: 30em;
+}

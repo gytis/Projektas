@@ -2,24 +2,90 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="lt" lang="lt">
 <head>
     <title>{% block title %}{% endblock %}</title>
-    <style>
-        .form_separator {
-            width: 30em;
-        }
-        .error {
-            color: red;
-            font-size: 9pt;
-        }
-        
-        body {
-            font-family: Tahoma, Times, Serif;
-            font-size: 10pt;
-        }
-    </style>
+    <link href="/styles/base.css" type="text/css" rel="stylesheet">
+    <link href="/styles/header.css" type="text/css" rel="stylesheet">
+    <link href="/styles/content.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-    <div id = "header">{% block header %}{% endblock %}</div>
+    <div id = "header">
+        
+        <div id = "pranesimai">
+            <span>Pranesimai:</span><br/>
+            {% load mail_extras %}
+            {% for pranesimas in user.pranesimas_set.all|nauji_pranesimai %}
+                {% ifequal pranesimas.tipas "new_mail" %}
+                    <a href="/mail/">{{ pranesimas.tekstas }}</a><br/>
+                {% endifequal %}
+                {% ifequal pranesimas.tipas "friend_request" %}
+                    <a>{{ pranesimas.tekstas }}</a><br/>
+                {% endifequal %}
+            {% empty %}
+                <span>Nauju pranesimu nera</span>
+            {% endfor %}
+        </div>
+        
+        <div id = "toolbar">
+            <div id = "foto"><img src = /{{ user.get_profile.nuotrauka }} alt = "Nera foto" /></div>
+            <div id = "savininkas"><span>{{ user.get_full_name|upper }}</span></div>
+            <div id = "meniu"><ul>
+                <li>
+                    <button class = "button" type="button" onclick = "window.open('/home/','_self')">
+                        Pagrindinis
+                    </button>
+                </li>
+                <li>
+                    <button class = "button" type="button" onclick = "window.open('/mail/','_self')">
+                        Pastas
+                    </button>
+                </li>
+                <li>
+                    <button class = "button" type="button" onclick = "window.open('/photos/','_self')">
+                        Nuotraukos
+                    </button>
+                </li>
+                <li>
+                    <button class = "button" type="button" onclick = "window.open('/friends/','_self')">
+                        Draugai
+                    </button>
+                </li>
+                <li>
+                    <button class = "button" type="button" onclick = "window.open('/info/','_self')">
+                        Profilis
+                    </button>
+                </li>
+                <li>
+                    <button class = "button" type="button" onclick = "window.open('/logout/','_self')">
+                        Atsijungti
+                    </button>
+                </li>
+            </ul></div>
+            <div id = "paieska">
+                <form method = "post" action = "/friends/search/">
+                    <input type = "text" name = "raktas" value="Paieska..." onfocus="if(this.value=='Paieska...'){this.value = ''}" onblur = "if(this.value==''){this.value = 'Paieska...'}"/>
+                    <input class = "button" type = "submit" value = "Ieskoti"/>
+                </form>
+            </div>
+        </div>
+    </div>
     <div id = "content">{% block content %}{% endblock %}</div>
     <div id = "footer">{% block footer %}{% endblock %}</div>
 </body>
 </html>
+
+<!--
+            <img id = "profile_foto" src = {{ nuotrauka }} alt = "Nera foto" />
+            <span>{{ savininkas }}</span>
+        </div>
+        <div class = "center">
+            <form method = "post" action = "#">
+                <input type = "text" name = "paieska"/>
+                <input class = "button" type = "submit" value = "Ieskoti"/>
+            </form>
+        </div>
+        <div class = "right">
+            <button class = "button" type="button" onclick = "window.open('/home/','_self')">Profilis</button>
+            <button class = "button" type="button" onclick = "window.open('/logout/','_self')">Atsijungti</button>
+        </div>
+        <div class = "meniu">
+            <button class = "button" type="button" onclick = "window.open('/messages/message_form/','mywindow','width=500,height=250')">Siusti laiska</button>
+        </div>-->

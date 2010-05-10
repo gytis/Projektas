@@ -1,0 +1,119 @@
+
+#content {
+    clear: both;
+}
+#content table {
+    margin: 10px;
+}
+#content h1 {
+    font-size: 14pt;
+    margin: 10px 0 0 10px;
+}
+
+/*
+*   Asmenines informacijos puslapio stilius
+*/
+.informacija { 
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    border: thin silver solid;
+    background-color: #009999;
+    width: 500px;
+}
+.informacija th {
+    text-align: left;
+}
+.informacija ul {
+    list-style: none;
+    float: right;
+}
+.informacija li .button {
+    margin: 5px;
+    padding: 0;
+}
+.informacija img {
+    height: 90px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.informacija .button {
+    margin: 10px;
+}
+
+/*
+*   Paieskos rezultatu puslapio stilius
+*/
+.paieskos_rezultatai {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    border: thin silver solid;
+    background-color: #009999;
+    width: 620px;
+}
+.paieskos_rezultatai img {
+    width: 100%;
+    height: 100%;
+    max-width: 70px;
+    max-height: 70px;
+    display: block;
+    margin: auto;
+}
+.paieskos_rezultatai table {
+    width: 600px;
+}
+.paieskos_rezultatai tr:hover {
+    background-color: #00CCCC;     
+}
+.paieskos_rezultatai th { 
+    background-color: #00CCCC;
+}
+.paieskos_rezultatai td {   
+    border-top: 10px #009999 solid;
+}
+.paieskos_rezultatai td:hover {
+    cursor: pointer;
+}
+.paieskos_rezultatai p {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 15px;
+    margin-right: 15px;
+    font-weight: bold;    
+}
+
+
+/*
+*   Pasto dezutes stilius
+*/
+.pastas {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    border: thin silver solid;
+    background-color: #009999;
+    width: 620px;
+}
+.pastas table {
+    width: 600px;
+}
+.pastas tr:hover {
+    background-color: #00CCCC;     
+}
+.pastas th { 
+    background-color: #00CCCC;
+}
+.pastas td {   
+    border-bottom: 1px silver solid;
+}
+.pastas td:hover {
+    cursor: pointer;
+}
+.nauji {
+    background-color: #62A9FF;
+}
+.pastas .button {
+    margin-top: 10px;
+    margin-left: 10px;
+}

@@ -17,7 +17,7 @@ DATABASE_HOST = ''             # Set to empty string for localhost. Not used wit
 DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
 
-AUTH_PROFILE_MODULE = "home.VartotojoProfilis"
+AUTH_PROFILE_MODULE = "info.Profilis"
 
 
 # Local time zone for this installation. Choices can be found here:
@@ -71,9 +71,6 @@ ROOT_URLCONF = 'tinklas.urls'
 
 TEMPLATE_DIRS = (
    'src/tinklas/templates'
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
 )
 
 INSTALLED_APPS = (
@@ -82,5 +79,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    'tinklas.home'
+    'tinklas.mail',
+    'tinklas.friends',
+    'tinklas.info',
 )
