@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="lt" lang="lt">
+<head>
+    <title>Duomenu keitimas</title>
+    <link href="/styles/base.css" type="text/css" rel="stylesheet">
+</head>
+<body>    
+    {% if message %}
+    <h1>{{ message }}</h1>
+    {% endif %}
+    {% if error %}
+    <span class = "error"> {{ error }} </span>
+    {% endif %}
+    {% if form %}
+        <form action="." method="post" enctype="multipart/form-data">
+            <table>
+            {% for field in form %}
+                <tr>
+                    <td>
+                        {{ field.label }}
+                        {% for error in  field.errors %}
+                            <br/><span class = "error">{{ error }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ field }}
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr><td><input class = "button" type = "submit" value = "Saugoti duomenis" /></td></tr>
+            </table>
+        </form>
+    {% else %}
+    <button class = "button" type="button" onclick = "window.close()">Uzdaryti langa</button>
+    {% endif %}
+</body>

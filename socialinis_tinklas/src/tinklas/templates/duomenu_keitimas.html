@@ -5,8 +5,12 @@
     <link href="/styles/base.css" type="text/css" rel="stylesheet">
 </head>
 <body>    
+    {% if message %}
+    <h1>{{ message }}</h1>
+    {% endif %}
+    {% if form %}    
     <form action="." method="post" enctype="multipart/form-data">
-        <div class = "registration">
+        <div class = "edit_profile">
             <table id = "table_pagr_info">
                 {% if error %}
                 <tr>
@@ -56,39 +60,6 @@
                     </td>
                     <td>
                         {{ form.El_pastas }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for = "Slaptazodis">Slaptazodis*</label>
-                        {% for error in  form.Slaptazodis.errors %}
-                            <br/><span class = "error">{{ error }}</span>
-                        {% endfor %}
-                    </td>
-                    <td>
-                        {{ form.Slaptazodis }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for = "Pakartoti_slaptazodi">Pakartoti slaptazodi*</label>
-                        {% for error in  form.Pakartoti_slaptazodi.errors %}
-                            <br/><span class = "error">{{ error }}</span>
-                        {% endfor %}
-                    </td>
-                    <td>
-                        {{ form.Pakartoti_slaptazodi }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for = "Nuotrauka">Nuotrauka</label>
-                        {% for error in  form.Nuotrauka.errors %}
-                            <br/><span class = "error">{{ error }}</span>
-                        {% endfor %}
-                    </td>
-                    <td>
-                        {{ form.Nuotrauka }}
                     </td>
                 </tr>
             </table>
@@ -176,12 +147,42 @@
                         {{ form.Aukst_mokyklos_baigimo_metai }}
                     </td>
                 </tr>
+            </table>
+            <div class = "form_separator"><hr/></div>
+            <table>
+                <tr>
+                    <td>
+                        <label for = "Slaptazodis">Slaptazodis*</label>
+                        {% for error in  form.Slaptazodis.errors %}
+                            <br/><span class = "error">{{ error }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ form.Slaptazodis }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for = "Pakartoti_slaptazodi">Pakartoti slaptazodi*</label>
+                        {% for error in  form.Pakartoti_slaptazodi.errors %}
+                            <br/><span class = "error">{{ error }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ form.Pakartoti_slaptazodi }}
+                    </td>
+                </tr>
+            </table>
+            <div class = "form_separator"><hr/></div>
+            <table>
                 <tr>
                     <td><input class = "button" type = "submit" value = "Saugoti duomenis" /></td>
                 </tr>
             </table>
-        </div>
-        
+        </div>        
     </form>
+    {% else %}
+    <button class = "button" type="button" onclick = "window.close()">Uzdaryti langa</button>
+    {% endif %}
 </body>
 </html>

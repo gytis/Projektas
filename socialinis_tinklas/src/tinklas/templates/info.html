@@ -4,7 +4,23 @@
 
 {% block content %}
 <div class = "informacija">
-    <button class = "button" type = "button" onclick = "window.open('/info/redaguoti/', 'redaguoti', 'width=500px, heigth=500px')">Redaguoti profili</button>
+    <ul>
+        <li>
+            <button class = "button" type = "button" onclick = "window.open('/info/redaguoti/', 'redaguoti', 'width=500px, height=620px')">
+                Redaguoti profili
+            </button>
+        </li>
+        <li>
+            <button class = "button" type = "button" onclick = "window.open('/info/keisti_slaptazodi/', 'keisti_slaptazodi', 'width=330px, height=180px')">
+                Keisti slaptazodi
+            </button>
+        </li>
+        <li>    
+            <button class = "button" type = "button" onclick = "window.open('/info/keisti_foto/', 'keisti_foto', 'width=440px, height=130px')">
+                Keisti pagrindine nuotrauka
+            </button>
+        </li>
+    </ul>
     <table>
         <tr><th colspan = "2">Asmenine informacija</th></tr>
         <tr><td>Vartotojo vardas: </td><td> {{ user.username}}</td>

@@ -48,8 +48,7 @@ class DuomenuKeitimoForma(forms.Form):
     Slaptazodis = forms.CharField(
                     widget=forms.PasswordInput(render_value=False))        
     Pakartoti_slaptazodi = forms.CharField(
-                    widget=forms.PasswordInput(render_value=False))
-    Nuotrauka = forms.ImageField(required=False)    
+                    widget=forms.PasswordInput(render_value=False))   
     
     Salis = forms.CharField(max_length=30, required=False)
     Miestas = forms.CharField(max_length=30, required=False)
@@ -63,3 +62,19 @@ class DuomenuKeitimoForma(forms.Form):
     Aukst_mokyklos_baigimo_metai = forms.IntegerField(required=False,
                                                         min_value=1900,
                                                         max_value=2020)
+
+
+class SlaptazodzioKeitimoForma(forms.Form):
+    Senas_slaptazodis = forms.CharField(
+                    widget=forms.PasswordInput(render_value=False))
+    Naujas_slaptazodis = forms.CharField(
+                    widget=forms.PasswordInput(render_value=False))
+    Pakartoti_nauja_slaptazodi = forms.CharField(
+                    widget=forms.PasswordInput(render_value=False))
+
+
+class PagrFotoKeitimoForma(forms.Form):
+    Nuotrauka = forms.ImageField(required=False)
+    Slaptazodis = forms.CharField(
+                    widget=forms.PasswordInput(render_value=False))
+
