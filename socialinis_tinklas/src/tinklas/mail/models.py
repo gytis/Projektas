@@ -26,4 +26,4 @@ class Pranesimas(models.Model):
     tekstas = models.CharField(max_length=100, null=True, blank=True)
     data = models.DateTimeField(auto_now=True)
     tipas = models.CharField(max_length=15)
-    perskaitytas = models.BooleanField(default=False)
+    action_id = models.PositiveIntegerField()

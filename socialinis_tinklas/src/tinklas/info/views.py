@@ -26,8 +26,13 @@ def vartotojo_info(request):
         username = request.GET.get('username', None)
         if username is not None and username != request.user.username:
             user = request.user
-            user_to_watch = User.objects.get(username=username)
-            #patikrinti ar daraugas  
+            try:
+                user_to_watch = User.objects.get(username=username)
+            except ObjectDoesNotExist:
+                try:
+                    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+                except:
+                    return HttpResponseRedirect('/home/') 
             return render_to_response('user_info.html', 
                 {'user': user, 'user_to_watch': user_to_watch})  
         return HttpResponseRedirect('/home/')          

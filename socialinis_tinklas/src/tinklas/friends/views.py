@@ -42,7 +42,8 @@ def siulyti_draugyste(request):
                 friendship.save()
                 siusti_pranesima(username, 
                         'Draugystes prasymas nuo %s' % user.username,
-                        'friend_request')
+                        'friend_request',
+                        friendship.id)
                 return HttpResponseRedirect('/info/user/?username=%s' % username)
             try:
                 return HttpResponseRedirect(request.META['HTTP_REFERER'])
@@ -79,6 +80,10 @@ def priimti_draugyste(request):
             user_draugyste.save()
             friend_draugyste.patvirtinta = True
             friend_draugyste.save()
+            
+            user.pranesimas_set.filter(Q(tipas='friend_request'), 
+                                Q(action_id=friend_draugyste.id)).delete()
+                
             return HttpResponseRedirect('/info/user/?username=%s' % username)
         return HttpResponseRedirect('/home/')
 
@@ -101,6 +106,9 @@ def atmesti_draugyste(request):
             
             if friend_draugyste.patvirtinta:
                 return HttpResponseRedirect('/home/')   # jei draugyste jau patvirtinta
+            
+            user.pranesimas_set.filter(Q(tipas='friend_request'), 
+                                Q(action_id=friend_draugyste.id)).delete()
             
             user.friend_set.filter(draugas=friend.username).delete()
             friend.friend_set.filter(draugas=user.username).delete()
@@ -127,6 +135,9 @@ def atsaukti_draugyste(request):
             
             if user_draugyste.patvirtinta:
                 return HttpResponseRedirect('/home/')   # jei draugyste jau patvirtinta
+            
+            friend.pranesimas_set.filter(Q(tipas='friend_request'), 
+                                Q(action_id=user_draugyste.id)).delete()
             
             user.friend_set.filter(draugas=friend.username).delete()
             friend.friend_set.filter(draugas=user.username).delete()

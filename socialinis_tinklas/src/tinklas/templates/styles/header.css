@@ -1,17 +1,21 @@
 #header {
     margin-left: auto;
     margin-right: auto;
-    width: 840px;
+    width: 875px;
 }
 
 #pranesimai {
     border: thin silver solid;
-    width: 200px;
-    height: 84px; 
+    width: 235px;
+    height: 94px; 
     background-color: #009999;
     margin: 10px;
     float: left; 
     vertical-align: bottom;
+}
+#pranesimai hr {
+    margin: 0;
+    color: silver;
 }
 #pranesimai span {
     font-size: 10pt;
@@ -22,11 +26,12 @@
     padding-left: 5px;
     font-size: 8pt;
     color: white;
+    text-decoration: none;
 }
 
 #toolbar {
     border: thin silver solid;
-    height: 84px;
+    height: 94px;
     width: 596px;
     background-color: #009999;
     padding: 0;
@@ -42,12 +47,12 @@
 }
 #foto {
     position: absolute;
-    top: 0;
+    top: 5px;
     left: 0;  
 }
 #savininkas {
     position: absolute;
-    top: 0;
+    top: 5px;
     left: 80px;
     margin: 10px;
 }
@@ -58,7 +63,7 @@
 }
 #meniu {
     position: absolute;
-    top: 40px;
+    top: 45px;
     left: 80px;
     padding: 0;
     margin: 10px;
@@ -73,7 +78,7 @@
 }
 #paieska {
     position: absolute;
-    top: 0;
+    top: 5px;
     right: 0;
     margin: 10px;
 }

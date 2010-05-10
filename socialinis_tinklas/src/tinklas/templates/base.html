@@ -12,12 +12,13 @@
         <div id = "pranesimai">
             <span>Pranesimai:</span><br/>
             {% load mail_extras %}
-            {% for pranesimas in user.pranesimas_set.all|nauji_pranesimai %}
+            {% for pranesimas in user.pranesimas_set.all %}
                 {% ifequal pranesimas.tipas "new_mail" %}
-                    <a href="/mail/">{{ pranesimas.tekstas }}</a><br/>
+                    <a href="/mail/">{{ pranesimas.tekstas }}</a>|<a href="/mail/pasalinti_pranesima/?id={{ pranesimas.id }}">Pasalinti</a><hr/>
                 {% endifequal %}
                 {% ifequal pranesimas.tipas "friend_request" %}
-                    <a>{{ pranesimas.tekstas }}</a><br/>
+                    {% load friends_extras %}
+                    <a href="/info/user/?username={{ pranesimas.action_id|siulytojas_pagal_id }}">{{ pranesimas.tekstas }}</a>|<a href="/mail/pasalinti_pranesima/?id={{ pranesimas.id }}">Pasalinti</a><hr/>
                 {% endifequal %}
             {% empty %}
                 <span>Nauju pranesimu nera</span>

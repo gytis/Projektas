@@ -17,17 +17,14 @@ def laisku_sarasas(request, gauti):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/home/')
     else:
+        user = request.user
         if gauti:
-            pranesimai = Pranesimas.objects.filter(Q(tipas='new_mail'),
-                                                    Q(perskaitytas=False))
-            for i in pranesimai:
-                i.perskaitytas = True
-                i.save()
+            user.pranesimas_set.filter(tipas='new_mail').delete()
             return render_to_response("gauti_laiskai.html",
                         {'user': request.user})
         else:
             return render_to_response("issiusti_laiskai.html",
-                        {'user': request.user})
+                        {'user': user})
 
 
 def gautas_laiskas(request, gautas):
@@ -95,25 +92,32 @@ def rasyti_laiska(request):
                 except:
                     error = "Vartotojas nerastas" 
                 if error == "":
-                    #CIA PATIKRINTI AR YRA DRAUGAS
-                    laiskas = GautasLaiskas(
-                            siuntejas = siuntejas.username, 
-                            gavejas = gavejas, 
-                            antraste = request.POST['Antraste'], 
-                            tekstas = request.POST['Tekstas'])
-                    laiskas.save()
-                    laiskas = IssiustasLaiskas(
-                            gavejas = gavejas.username,
-                            siuntejas = siuntejas,
-                            antraste = request.POST['Antraste'], 
-                            tekstas = request.POST['Tekstas'])
-                    laiskas.save()
-                    siusti_pranesima(
-                        request.POST['Gavejo_vartotojo_vardas'],
-                        "Naujas laiskas nuo vartotojo %s" % siuntejas.username,
-                        "new_mail")
-                    return render_to_response("message_form.html", 
-                            {'message': "Laiskas issiustas"})
+                    try:
+                        siuntejas.friend_set.get(Q(draugas=gavejas.username),
+                                Q(patvirtinta=True))
+                    except ObjectDoesNotExist:
+                        error = "Laiskus galima siusti tik draugams"
+                    if error == "":
+                        laiskas = GautasLaiskas(
+                                siuntejas = siuntejas.username, 
+                                gavejas = gavejas, 
+                                antraste = request.POST['Antraste'], 
+                                tekstas = request.POST['Tekstas'])
+                        laiskas.save()
+                        action_id = laiskas.id
+                        laiskas = IssiustasLaiskas(
+                                gavejas = gavejas.username,
+                                siuntejas = siuntejas,
+                                antraste = request.POST['Antraste'], 
+                                tekstas = request.POST['Tekstas'])
+                        laiskas.save()
+                        siusti_pranesima(
+                            request.POST['Gavejo_vartotojo_vardas'],
+                            "Laiskas nuo vartotojo %s" % siuntejas.username,
+                            "new_mail",
+                            action_id)
+                        return render_to_response("message_form.html", 
+                                {'message': "Laiskas issiustas"})
             else:
                 error = "Neteisingai uzpildyta forma"
         else:            
@@ -129,11 +133,25 @@ def rasyti_laiska(request):
                                 {'form': form, 'error': error})
 
 
-def siusti_pranesima(username, tekstas, tipas):
+def siusti_pranesima(username, tekstas, tipas, action_id):
     try:
         user = User.objects.get(username=username)
     except ObjectDoesNotExist:
         return False    
-    pranesimas = Pranesimas(gavejas=user, tekstas=tekstas, tipas=tipas)
+    pranesimas = Pranesimas(gavejas=user, tekstas=tekstas,
+                    tipas=tipas, action_id=action_id)
     pranesimas.save()
     return True
+
+def pasalinti_pranesima(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/home/')
+    else:
+        if request.method == "GET":
+            id = request.GET.get('id', None)
+            if id is not None:
+                request.user.pranesimas_set.filter(id=id).delete()
+        try:
+            return HttpResponseRedirect(request.META['HTTP_REFERER'])
+        except:
+            return HttpResponseRedirect('/home/')

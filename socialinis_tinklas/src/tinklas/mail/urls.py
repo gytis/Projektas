@@ -12,4 +12,5 @@ urlpatterns = patterns('tinklas.mail.views',
     (r'^issiustas_laiskas', 'issiustas_laiskas', {'gautas': False}),
     (r'^trinti_issiustus', 'trinti_laiskus', {'gautus': False}),
     (r'^trinti_gautus', 'trinti_laiskus', {'gautus': True}),
+    (r'^pasalinti_pranesima', 'pasalinti_pranesima'),
 )
