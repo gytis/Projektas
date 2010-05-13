@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}{{ user_to_watch.username }} profilis{% endblock %}
+
+{% block content %}
+<div class = "informacija">
+    <img src = /{{ user_to_watch.get_profile.nuotrauka }}/>    
+    
+    {% load friends_extras %}
+    
+    {% if not user|is_friend:user_to_watch %}
+        {% if user|is_requested:user_to_watch %}
+            <ul>
+                <li>
+                    <button class = "button" type = "button" onclick = "window.open('/friends/atsaukti/?username={{user_to_watch.username}}', '_self')">
+                        Atsaukti siulyma draugauti
+                    </button>
+                </li>
+            </ul>
+        {% else %}{% if user_to_watch|is_requested:user %}
+            <ul>
+                <li>
+                    <button class = "button" type = "button" onclick = "window.open('/friends/priimti/?username={{user_to_watch.username}}', '_self')">
+                        Priimti siulyma draugauti
+                    </button>
+                </li>
+                <li>
+                    <button class = "button" type = "button" onclick = "window.open('/friends/atmesti/?username={{user_to_watch.username}}', '_self')">
+                        Atmesti siulyma draugauti
+                    </button>
+                </li>
+            </ul>
+        {% else %}
+            <ul>
+                <li>
+                    <button class = "button" type = "button" onclick = "window.open('/friends/request/?username={{user_to_watch.username}}', '_self')">
+                        Pasiulyti draugauti
+                    </button>
+                </li>
+            </ul>
+        {% endif %}{% endif %}
+    {% else %}
+        <ul>
+            <li>
+                <button class = "button" type = "button" onclick = "window.open('/mail/message_form/?username={{user_to_watch.username}}', 'newletter', 'width=500, height=250')">
+                    Rasyti laiska
+                </button>
+            </li>
+            <li>
+                <button class = "button" type = "button" onclick = "window.open('/friends/pasalinti/?username={{user_to_watch.username}}', '_self')">
+                    Pasalinti drauga
+                </button>
+            </li>
+        </ul>
+    {% endif %}
+    <table>
+        <tr><th colspan = "2">Asmenine informacija</th></tr>
+        {% if user_to_watch.username %}<tr><td>Vartotojo vardas: </td><td> {{ user_to_watch.username }}</td> {% endif %}
+        {% if user_to_watch.first_name %}<tr><td>Vardas: </td><td> {{ user_to_watch.first_name}}</td> {% endif %}
+        {% if user|is_friend:user_to_watch %}{% if user_to_watch.last_name %}<tr><td>Pavarde: </td><td> {{ user_to_watch.last_name}}</td> {% endif %}{% endif %}
+        {% if user|is_friend:user_to_watch %}{% if user.get_profile.gimtadienis %}<tr><td>Gimimo diena: </td><td> {{ user.get_profile.gimtadienis}}</td> {% endif %}{% endif %}
+    </table>
+    <table>
+        <tr><th colspan = "2">Kontaktine informacija</th></tr>
+        {% if user|is_friend:user_to_watch %}{% if user_to_watch.email %}<tr><td>Elektroninis pastas: </td><td> {{ user_to_watch.email }} </td> {% endif %}{% endif %}
+        {% if user_to_watch.get_profile.salis %}<tr><td>Salis: </td><td> {{ user_to_watch.get_profile.salis }} </td> {% endif %}
+        {% if user_to_watch.get_profile.miestas %}<tr><td>Miestas: </td><td> {{ user_to_watch.get_profile.miestas }} </td> {% endif %}
+        {% if user|is_friend:user_to_watch %}{% if user_to_watch.get_profile.adresas %}<tr><td>Adresas: </td><td> {{ user_to_watch.get_profile.adresas }} </td> {% endif %}{% endif %}
+    </table>
+    {% if user|is_friend:user_to_watch %}
+    <table>
+        <tr><th colspan = "2">Issilavinimas</th></tr>
+        {% if user_to_watch.get_profile.vidurine_mokykla %}<tr><td>Vidurine mokykla: </td><td> {{ user_to_watch.get_profile.vidurine_mokykla }} </td> {% endif %}
+        {% if user_to_watch.get_profile.v_mokyklos_baigimo_metai %}<tr><td>Vid. mokyklos baigimo metai: </td><td> {{ user_to_watch.get_profile.v_mokyklos_baigimo_metai }} </td> {% endif %}
+        {% if user_to_watch.get_profile.aukstoji_mokykla %}<tr><td>Aukstoji mokykla: </td><td> {{ user_to_watch.get_profile.aukstoji_mokykla }} </td> {% endif %}
+        {% if user_to_watch.get_profile.a_mokyklos_baigimo_metai %}<tr><td>Aukst. mokyklos baigimo metai: </td><td> {{ user_to_watch.get_profile.a_mokyklos_baigimo_metai }} </td> {% endif %}
+    </table>
+    <table>
+        <tr><th colspan = "2">Kita</th></tr>
+        <tr><td>Paskutinis apsilankymas: </td><td> {{ user.last_login.date }}, {{ user.last_login|time:"H:i" }} </td></tr>
+        <tr><td>Registracijos data: </td><td> {{ user.date_joined.date }}, {{ user.date_joined|time:"H:i" }} </td></tr>
+    </table>
+    {% endif %}
+</div>
+{% endblock %}

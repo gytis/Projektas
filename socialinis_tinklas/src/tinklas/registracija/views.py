@@ -49,7 +49,7 @@ def registruoti(request):
         else:
             form = RegistrationForm(auto_id=False)
         
-        return render_to_response("registration.html", 
+        return render_to_response("anonymous/registration.html", 
                             {'form': form, 'error': error})
  
 def registruoti_vartotoja(request):

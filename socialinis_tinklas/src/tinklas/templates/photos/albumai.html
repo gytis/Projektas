@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Nuotrauku albumai{% endblock %}
+
+{% block content %}
+    <div class = "albumai">
+    <button class = "button" type = "button" onclick = "window.open('/photos/create_album/', 'newalbum', 'width=350px, height=150px')">Sukurti albuma</button>
+    <button class = "button" type = "button" onclick = "window.open('/photos/remove_album/', 'newalbum', 'width=350px, height=150px')">Pasalinti albuma</button>
+    <br/>
+    {% for albumas in albumai %}
+        <div class = "albumas">
+            {% for img in albumas.values %}
+                <span class = "foto" onclick="window.open('/photos/album/?album_name={%for key in albumas.keys%}{{key}}{%endfor%}', '_self')">
+                    <img src=/{{ img }} width="136" height="200" alt="Nera nuotrauku"></span>
+            {% endfor %}<br/>
+            {% for key in albumas.keys %}
+                <span class = "pavadinimas">{{ key }}</span>
+            {% endfor %}
+        </div>
+    {% empty %}
+        <h1>Nera nuotrauku albumu</h1>
+    {% endfor %}
+    </div>
+{% endblock %}

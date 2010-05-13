@@ -6,8 +6,44 @@
     margin: 10px;
 }
 #content h1 {
-    font-size: 14pt;
+    font-size: 12pt;
     margin: 10px 0 0 10px;
+}
+#content .button {
+    margin: 10px;
+}
+
+
+/*
+*   Pagrindinio puslapio stilius
+*/
+#home {
+    margin-left: auto;
+    margin-right: auto;
+    width: 700px;
+}
+#home #draugai {
+    border: thin silver solid;
+    background-color: #009999;
+    width: 340px;
+    height: 200px;
+    float: left;
+    margin-bottom: 10px;
+}
+#home #nuotraukos {
+    border: thin silver solid;
+    background-color: #009999;
+    width: 340px;
+    height: 200px;
+    float: right;
+    margin-bottom: 10px;
+}
+#home #laiskai {
+    border: thin silver solid;
+    background-color: #009999;
+    width: 700px;
+    height: 200px;
+    clear: both;
 }
 
 /*
@@ -28,7 +64,7 @@
     list-style: none;
     float: right;
 }
-.informacija li .button {
+#content .informacija li .button {
     margin: 5px;
     padding: 0;
 }
@@ -36,9 +72,6 @@
     height: 90px;
     margin-top: 10px;
     margin-left: 10px;
-}
-.informacija .button {
-    margin: 10px;
 }
 
 /*
@@ -113,7 +146,70 @@
 .nauji {
     background-color: #62A9FF;
 }
-.pastas .button {
+
+/*
+*   Nuotrauku albumu stiliai
+*/
+.albumai {
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 10px;
-    margin-left: 10px;
+    border: thin silver solid;
+    background-color: #009999;
+    width: 620px;
+    min-height: 100px;
+}
+.albumas {
+    margin: 10px 20px;    
+    width: 100px;   
+    display: inline;
+}
+.albumas img {
+    border: thin silver solid;
+    width: 100px;
+    height: 100px;
+}
+.albumas .pavadinimas {
+    margin: 0;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.albumai div {
+    display: inline-block;
+}
+.albumas img:hover {
+    border: 2px #00CCCC solid;
+    cursor: pointer;
+}
+/*
+*   Nuotrauku albumo stilius
+*/
+.nuotraukos {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    border: thin silver solid;
+    background-color: #009999;
+    width: 620px;
+    min-height: 100px;
+}
+.nuotraukos .nuotrauka {
+    margin: 10px 20px;    
+    width: 100px;   
+    display: inline-block;
+}
+.nuotraukos img {
+    border: thin silver solid;
+    width: 100px;
+    height: 100px;
+}
+.nuotraukos img:hover {
+    border: 1px #00CCCC solid;
+    cursor: pointer;
+}
+.nuotraukos .check {
+    margin: 0
+}
+.nuotraukos .error {
+    margin: 10px
 }

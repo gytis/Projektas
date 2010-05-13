@@ -73,8 +73,20 @@ class SlaptazodzioKeitimoForma(forms.Form):
                     widget=forms.PasswordInput(render_value=False))
 
 
-class PagrFotoKeitimoForma(forms.Form):
+class PridetiFoto(forms.Form):
     Nuotrauka = forms.ImageField(required=False)
     Slaptazodis = forms.CharField(
                     widget=forms.PasswordInput(render_value=False))
 
+
+class PridetiFotoIAlbuma(forms.Form):
+    Albumas = forms.CharField(max_length=20)
+    Nuotrauka = forms.ImageField(required=False)
+    Slaptazodis = forms.CharField(
+                    widget=forms.PasswordInput(render_value=False))
+
+
+class AddRemoveAlbumForm(forms.Form):
+    Pavadinimas = forms.CharField(max_length=20)
+    Slaptazodis = forms.CharField(
+                    widget=forms.PasswordInput(render_value=False))

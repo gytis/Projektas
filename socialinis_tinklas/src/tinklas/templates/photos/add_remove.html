@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="lt" lang="lt">
+<head>
+    <title>Naujo albumo kurimas</title>
+    <link href="/styles/base.css" type="text/css" rel="stylesheet">
+    <style>
+        h1 {
+            font-size: 14pt;
+        }
+    </style>
+</head>
+<body>
+    {% if message %}
+    <h1>{{ message }}</h1>
+    {% endif %}
+    {% if form %}
+    <form method = "post" action = "." enctype="multipart/form-data">
+        <table class = "form">
+            {% if error %}
+            <tr>
+                <td colspan = "2"><span class = "error">{{ error }}</span></td>
+            </tr>
+            {% endif %}
+            {% for field in form %}
+                <tr>
+                    <td>
+                        {{ field.label_tag }}
+                        {% for error in  field.errors %}
+                            <br/><span class = "error">{{error}}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ field }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <table>
+            <tr>
+                <td colspan='2'>
+                    <input type = "submit" class = "button" value = "Vykdyti">
+                </td>
+            </tr>
+        </table>
+    </form>
+    {% else %}
+    <button class = "button" type="button" onclick = "window.close()">Uzdaryti langa</button>
+    {% endif %}
+</body>
+</html>

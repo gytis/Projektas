@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Asmenine informacija{% endblock %}
+
+{% block content %}
+<div class = "informacija">
+    <ul>
+        <li>
+            <button class = "button" type = "button" onclick = "window.open('/info/redaguoti/', 'redaguoti', 'width=500px, height=620px')">
+                Redaguoti profili
+            </button>
+        </li>
+        <li>
+            <button class = "button" type = "button" onclick = "window.open('/info/keisti_slaptazodi/', 'keisti_slaptazodi', 'width=330px, height=180px')">
+                Keisti slaptazodi
+            </button>
+        </li>
+        <li>    
+            <button class = "button" type = "button" onclick = "window.open('/info/keisti_foto/', 'keisti_foto', 'width=440px, height=130px')">
+                Keisti pagrindine nuotrauka
+            </button>
+        </li>
+    </ul>
+    <table>
+        <tr><th colspan = "2">Asmenine informacija</th></tr>
+        <tr><td>Vartotojo vardas: </td><td> {{ user.username}}</td>
+        <tr><td>Vardas: </td><td> {{ user.first_name}}</td>
+        <tr><td>Pavarde: </td><td> {{ user.last_name}}</td>
+        {% if user.get_profile.gimtadienis %}<tr><td>Gimimo diena: </td><td> {{ user.get_profile.gimtadienis}}</td> {% endif %}
+    </table>
+    <table>
+        <tr><th colspan = "2">Kontaktine informacija</th></tr>
+        <tr><td>Elektroninis pastas: </td><td> {{ user.email }} </td>
+        {% if user.get_profile.salis %}<tr><td>Salis: </td><td> {{ user.get_profile.salis }} </td> {% endif %}
+        {% if user.get_profile.miestas %}<tr><td>Miestas: </td><td> {{ user.get_profile.miestas }} </td> {% endif %}
+        {% if user.get_profile.adresas %}<tr><td>Adresas: </td><td> {{ user.get_profile.adresas }} </td> {% endif %}
+    </table>
+    <table>
+        <tr><th colspan = "2">Issilavinimas</th></tr>
+        {% if user.get_profile.vidurine_mokykla %}<tr><td>Vidurine mokykla: </td><td> {{ user.get_profile.vidurine_mokykla }} </td> {% endif %}
+        {% if user.get_profile.v_mokyklos_baigimo_metai %}<tr><td>Vid. mokyklos baigimo metai: </td><td> {{ user.get_profile.v_mokyklos_baigimo_metai }} </td> {% endif %}
+        {% if user.get_profile.aukstoji_mokykla %}<tr><td>Aukstoji mokykla: </td><td> {{ user.get_profile.aukstoji_mokykla }} </td> {% endif %}
+        {% if user.get_profile.a_mokyklos_baigimo_metai %}<tr><td>Aukst. mokyklos baigimo metai: </td><td> {{ user.get_profile.a_mokyklos_baigimo_metai }} </td> {% endif %}
+    </table>
+    <table>
+        <tr><th colspan = "2">Kita</th></tr>
+        <tr><td>Paskutinis apsilankymas: </td><td> {{ user.last_login.date }}, {{ user.last_login|time:"H:i" }} </td></tr>
+        <tr><td>Registracijos data: </td><td> {{ user.date_joined.date }}, {{ user.date_joined|time:"H:i" }} </td></tr>
+    </table>
+</div>
+{% endblock %}

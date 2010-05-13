@@ -23,7 +23,7 @@ def show_friends(request):
             except ObjectDoesNotExist:
                 continue
             rezultatas.append(draugas)
-        return render_to_response('search_results.html', {'user': request.user, 'rezultatas': rezultatas, 'title': 'Draugu sarasas'})
+        return render_to_response('friends/search_results.html', {'user': request.user, 'rezultatas': rezultatas, 'title': 'Draugu sarasas'})
 
 
 def siulyti_draugyste(request):
@@ -173,7 +173,7 @@ def paieska(request):
                             Q(username__contains=raktas) |
                             Q(first_name__contains=raktas) |
                             Q(last_name__contains=raktas))                
-                return render_to_response("search_results.html", 
+                return render_to_response("friends/search_results.html", 
                         {'user': request.user, 'rezultatas': rezultatas, 'title': 'Paieskos rezultatai'})
             else:
                 try:

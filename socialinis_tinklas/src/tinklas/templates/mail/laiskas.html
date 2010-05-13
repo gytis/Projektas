@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="lt" lang="lt">
+<head>
+    <link href="/styles/base.css" type="text/css" rel="stylesheet">
+    <style>
+        table {
+            width: 750px;
+            heigth: 450px;
+            
+        }
+        th { 
+            width: 100px;
+            background-color: #00CCCC;
+        }
+        td {   
+            border-bottom: 1px silver solid;
+        }
+        div {
+            width: 690px;
+            height: 300px;
+            overflow: auto;
+            scroll: auto;
+        }
+    </style>
+</head>
+<body>
+    {% if gautas %}
+        <button class = "button" type = "button" onclick = "window.open('/mail/message_form/?username={{ laiskas.siuntejas }}', 'newletter', 'width=500, height=250')">Atsakyti</button>
+    {% endif %}
+    <button class = "button" type="button" onclick = "window.close()">Uzdaryti langa</button>
+    <table>
+        <tr>
+            <th>Siuntejas</th><td>{{ laiskas.siuntejas }}</td>
+        </tr>
+        <tr>
+            <th>Gavejas</th><td>{{ laiskas.gavejas.username }}</td>
+        </tr>
+        <tr>
+            <th>Gauta</th><td>{{ laiskas.data.date }}, {{ laiskas.data|time:"H:i" }}</td>
+        </tr>
+        <tr>
+            <th>Antraste</th><td>{{ laiskas.antraste }}</td>
+        </tr>
+        <tr>
+            <th>Tekstas</th><td><div>{{ laiskas.tekstas }}</div></td>
+        </tr>
+    </table>
+</body>
+</html>

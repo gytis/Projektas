@@ -20,10 +20,10 @@ def laisku_sarasas(request, gauti):
         user = request.user
         if gauti:
             user.pranesimas_set.filter(tipas='new_mail').delete()
-            return render_to_response("gauti_laiskai.html",
+            return render_to_response("mail/gauti_laiskai.html",
                         {'user': request.user})
         else:
-            return render_to_response("issiusti_laiskai.html",
+            return render_to_response("mail/issiusti_laiskai.html",
                         {'user': user})
 
 
@@ -36,7 +36,7 @@ def gautas_laiskas(request, gautas):
             if laiskas.gavejas == request.user:
                 laiskas.perskaitytas = True;
                 laiskas.save()
-                return render_to_response("laiskas.html",
+                return render_to_response("mail/laiskas.html",
                         {'laiskas': laiskas, 'gautas': gautas})
             else:
                 return HttpResponseRedirect('/home/')
@@ -53,7 +53,7 @@ def issiustas_laiskas(request, gautas):
         try:
             laiskas = IssiustasLaiskas.objects.get(id=request.GET['id'])
             if laiskas.siuntejas == request.user:
-                return render_to_response("laiskas.html",
+                return render_to_response("mail/laiskas.html",
                         {'laiskas': laiskas, 'gautas': gautas})
             else:
                 return HttpResponseRedirect('/home/')
@@ -116,7 +116,7 @@ def rasyti_laiska(request):
                             "Laiskas nuo vartotojo %s" % siuntejas.username,
                             "new_mail",
                             action_id)
-                        return render_to_response("message_form.html", 
+                        return render_to_response("mail/message_form.html", 
                                 {'message': "Laiskas issiustas"})
             else:
                 error = "Neteisingai uzpildyta forma"
@@ -129,7 +129,7 @@ def rasyti_laiska(request):
             except:
                 form = LaiskoForma()
         
-        return render_to_response("message_form.html", 
+        return render_to_response("mail/message_form.html", 
                                 {'form': form, 'error': error})
 
 

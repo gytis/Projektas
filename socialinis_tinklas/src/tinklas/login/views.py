@@ -25,17 +25,17 @@ def prisijungti(request):
                         login(request, user)
                         return HttpResponseRedirect('/home/')
                     else:
-                        return render_to_response("login.html",
+                        return render_to_response("anonymous/login.html",
                                 {'form': form, 
                                 'error': "Vartotojas uzblokuotas"})
                 else:
-                    return render_to_response("login.html",
+                    return render_to_response("anonymous/login.html",
                                 {'form': form, 
                                 'error': "Neteisingas vartotojo vardas \
                                             arba slaptazodis"}) 
         else:
             form = LoginForm()        
-        return render_to_response("login.html", {'form': form})
+        return render_to_response("anonymous/login.html", {'form': form})
 
 
 def atsijungti(request):

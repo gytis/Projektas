@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Albumas {{ albumas }} {% endblock %}
+
+{% block content %}
+    <div class = "nuotraukos">
+    <form method="post" action="/photos/remove_photo/?album_name={{albumas}}">
+        <button class="button" type="button" onclick="window.open('/photos/', '_self')">Grizti i albumus</button>
+        <button class="button" type="button" onclick="window.open('/photos/add_photo/?album_name={{albumas}}', 'newphoto', 'width=415px, height=150px')">Prideti nuotrauka</button>
+        <input class="button" type="submit" value="Trinti pazymeta nuotrauka" />
+        <br/>
+        {% if error %}
+            <span class = "error">{{ error }}</span>
+        {% endif %}
+        <h1>Nuotrauku albumas: {{ albumas }}</h1>        
+            {% for nuotrauka in nuotraukos %}
+                <div class = "nuotrauka">
+                    <span class = "check"><input type="checkbox" name="trinti" value="{{nuotrauka}}" /></span>
+                    <span><img src=/{{ nuotrauka }} alt="Nera foto" 
+                        onclick="window.open('/photos/show_photo/?photo={{nuotrauka}}', 
+                        'photo', 'width=500px, height=500px')"/></span>
+                </div>
+            {% empty %}
+                <h1>Albumas tuscias</h1>
+            {% endfor %}
+    </form>
+    </div>
+{% endblock %}

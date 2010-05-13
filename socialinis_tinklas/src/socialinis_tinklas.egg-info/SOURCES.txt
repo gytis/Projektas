@@ -14,6 +14,8 @@ src/tinklas/friends/models.py
 src/tinklas/friends/tests.py
 src/tinklas/friends/urls.py
 src/tinklas/friends/views.py
+src/tinklas/friends/templatetags/__init__.py
+src/tinklas/friends/templatetags/friends_extras.py
 src/tinklas/home/__init__.py
 src/tinklas/home/models.py
 src/tinklas/home/tests.py
@@ -34,8 +36,12 @@ src/tinklas/mail/models.py
 src/tinklas/mail/tests.py
 src/tinklas/mail/urls.py
 src/tinklas/mail/views.py
+src/tinklas/mail/templatetags/__init__.py
+src/tinklas/mail/templatetags/mail_extras.py
 src/tinklas/photos/__init__.py
 src/tinklas/photos/photos_manager.py
+src/tinklas/photos/urls.py
+src/tinklas/photos/views.py
 src/tinklas/registracija/__init__.py
 src/tinklas/registracija/models.py
 src/tinklas/registracija/tests.py
