@@ -6,20 +6,28 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class GautasLaiskas(models.Model):
-    gavejas = models.ForeignKey(User, unique=False)
-    siuntejas = models.CharField(max_length=30)    
+#class GautasLaiskas(models.Model):
+#    gavejas = models.ForeignKey(User, unique=False)
+#    siuntejas = models.CharField(max_length=30)    
+#    antraste = models.CharField(max_length=100, null=True, blank=True)
+#    tekstas = models.CharField(max_length=1000, null=True, blank=True)
+#    data = models.DateTimeField(auto_now_add=True)
+#    perskaitytas = models.BooleanField(default=False)
+
+#class IssiustasLaiskas(models.Model):
+#    siuntejas = models.ForeignKey(User, unique=False)
+#    gavejas = models.CharField(max_length=30)    
+#    antraste = models.CharField(max_length=100, null=True, blank=True)
+#    tekstas = models.CharField(max_length=1000, null=True, blank=True)
+#    data = models.DateTimeField(auto_now_add=True)
+
+class Laiskas(models.Model):
+    siuntejas = models.ForeignKey(User, unique=False, null=True, blank=True, related_name='siuntejas')
+    gavejas = models.ForeignKey(User, unique=False, null=True, blank=True, related_name='gavejas')
     antraste = models.CharField(max_length=100, null=True, blank=True)
     tekstas = models.CharField(max_length=1000, null=True, blank=True)
     data = models.DateTimeField(auto_now_add=True)
     perskaitytas = models.BooleanField(default=False)
-
-class IssiustasLaiskas(models.Model):
-    siuntejas = models.ForeignKey(User, unique=False)
-    gavejas = models.CharField(max_length=30)    
-    antraste = models.CharField(max_length=100, null=True, blank=True)
-    tekstas = models.CharField(max_length=1000, null=True, blank=True)
-    data = models.DateTimeField(auto_now_add=True)
 
 class Pranesimas(models.Model):
     gavejas = models.ForeignKey(User, unique=False)

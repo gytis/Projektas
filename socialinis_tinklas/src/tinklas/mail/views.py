@@ -9,7 +9,7 @@ from django.db.models import Q
 
 from django.contrib.auth.models import User
 
-from tinklas.mail.models import GautasLaiskas, IssiustasLaiskas, Pranesimas
+from tinklas.mail.models import Laiskas, Pranesimas
 from tinklas.forms.forms import LaiskoForma
 
 
@@ -32,7 +32,7 @@ def gautas_laiskas(request, gautas):
         return HttpResponseRedirect('/home/')
     else:
         try:
-            laiskas = GautasLaiskas.objects.get(id=request.GET['id'])
+            laiskas = Laiskas.objects.get(id=request.GET['id'])
             if laiskas.gavejas == request.user:
                 laiskas.perskaitytas = True;
                 laiskas.save()
@@ -51,7 +51,7 @@ def issiustas_laiskas(request, gautas):
         return HttpResponseRedirect('/home/')
     else:
         try:
-            laiskas = IssiustasLaiskas.objects.get(id=request.GET['id'])
+            laiskas = Laiskas.objects.get(id=request.GET['id'])
             if laiskas.siuntejas == request.user:
                 return render_to_response("mail/laiskas.html",
                         {'laiskas': laiskas, 'gautas': gautas})
@@ -69,10 +69,16 @@ def trinti_laiskus(request, gautus):
         return HttpResponseRedirect('/home/')
     else:
         if gautus:
-            GautasLaiskas.objects.filter(gavejas = request.user).delete()
+            laiskai = Laiskas.objects.filter(gavejas = request.user)
+            for laiskas in laiskai:
+                laiskas.gavejas = None
+                laiskas.save()
             return HttpResponseRedirect('/mail/')
         else:
-            IssiustasLaiskas.objects.filter(siuntejas = request.user).delete()
+            laiskai = Laiskas.objects.filter(siuntejas = request.user)
+            for laiskas in laiskai:
+                laiskas.siuntejas = None
+                laiskas.save()
             return HttpResponseRedirect('/mail/outbox/')
 
 
@@ -98,19 +104,13 @@ def rasyti_laiska(request):
                     except ObjectDoesNotExist:
                         error = "Laiskus galima siusti tik draugams"
                     if error == "":
-                        laiskas = GautasLaiskas(
-                                siuntejas = siuntejas.username, 
+                        laiskas = Laiskas(
+                                siuntejas = siuntejas, 
                                 gavejas = gavejas, 
                                 antraste = request.POST['Antraste'], 
                                 tekstas = request.POST['Tekstas'])
                         laiskas.save()
                         action_id = laiskas.id
-                        laiskas = IssiustasLaiskas(
-                                gavejas = gavejas.username,
-                                siuntejas = siuntejas,
-                                antraste = request.POST['Antraste'], 
-                                tekstas = request.POST['Tekstas'])
-                        laiskas.save()
                         siusti_pranesima(
                             request.POST['Gavejo_vartotojo_vardas'],
                             "Laiskas nuo vartotojo %s" % siuntejas.username,

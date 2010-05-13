@@ -8,14 +8,14 @@
     <button class = "button" type = "button" onclick = "window.open('/mail/', '_self')">I gautus laiskus</button>
     <button class = "button" type = "button" onclick = "window.open('/mail/message_form/', 'newletter', 'width=500, height=250')">Rasyti laiska</button>
     
-    {% if user.issiustaslaiskas_set.all %}
+    
     <button class = "button" type = "button" onclick = "window.open('/mail/trinti_issiustus/', '_self')">Trinti laiskus</button>
     <h1>Issiusti laiskai</h1>
     <table>
         <tr>
             <th>Data</th><th>Laikas</th><th>Gavejas</th><th>Antraste</th>
         </tr>
-        {% for laiskas in user.issiustaslaiskas_set.all %}
+        {% for laiskas in user|issiusti_laiskai %}
         <tr onclick = "window.open('/mail/issiustas_laiskas/?id={{laiskas.id}}', 'letter','width=780,height=430'), window.location.reload(true)">
             <td>{{ laiskas.data.date }}</td>
             <td>{{ laiskas.data.time|time:"H:i" }}</td>
@@ -28,8 +28,6 @@
         </tr>
         {% endfor %}
     <table>
-    {% else %}
-    <h1>Issiustu laisku nera</h1>
-    {% endif %}
+
 </div>
 {% endblock %}
